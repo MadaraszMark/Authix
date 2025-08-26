@@ -1,41 +1,25 @@
-# NMovie 🎬
-Egyszerű, de folyamatosan bővülő **REST API** filmek kezelésére Spring Boot alapokon.  
-A projekt célja a modern backend technológiák gyakorlása és bemutatása.
+# Authix
 
----
+Egyszerű Spring Boot REST API JWT alapú hitelesítéssel.
 
-## 🚀 Funkciók
-- Új film létrehozása
-- Filmek lekérdezése (összes, cím, év alapján)
-- Film lekérdezése azonosító alapján
-- Film soft delete funkcióval történő törlése
-- Validáció és hibatűrő működés
+## ✨ Funkciók
+- Regisztráció (`/api/v1/auth/register`)
+- Bejelentkezés (`/api/v1/auth/login`)
+- Token alapú védelem
+- Védett végpont: `/api/v1/users/me`
 - Swagger UI dokumentáció
 
----
+## 🔧 Technológiák
+- Java 17  
+- Spring Boot 3 (Web, Data JPA, Security, Validation)  
+- MySQL  
+- JWT (io.jsonwebtoken)  
+- Lombok, Swagger/OpenAPI  
 
-## 🛠️ Technológiák
-- **Java 17**
-- **Spring Boot 3**
-  - Spring Web
-  - Spring Data JPA
-  - Spring Validation
-- **Hibernate** (ORM)
-- **MySQL** (adatbázis)
-- **Lombok** (boilerplate kód csökkentésére)
-- **Swagger / OpenAPI** (API dokumentációhoz)
-- **JUnit 5 & Mockito** (egységteszteléshez)
+## 🚀 Futtatás
+1. Hozz létre egy `authix` nevű MySQL adatbázist.  
+2. Állítsd be a `src/main/resources/application.properties` fájlt (DB jelszó, JWT secret).  
+3. Indítás:  
+   ```bash
+   mvn spring-boot:run
 
----
-
-## 📂 Projekt szerkezet
-- `controller` – REST végpontok
-- `service` – üzleti logika
-- `repository` – adatbázis elérés (JPA)
-- `model` – entitások
-- `dto` – adatátviteli objektumok (Request/Response)
-- `mapper` – entitások és DTO-k közötti átalakítás
-- `exception` – hibakezelés (globális handler)
-- `resources` – konfiguráció (`application.properties`)
-
----
