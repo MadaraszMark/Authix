@@ -1,4 +1,3 @@
-// src/main/java/hu/authix/main/controller/UserController.java
 package hu.authix.main.controller;
 
 import org.springframework.security.core.Authentication;
