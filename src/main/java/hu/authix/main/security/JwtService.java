@@ -16,7 +16,7 @@ public class JwtService {
     public JwtService(
             @Value("${auth.jwt.secret}") String secret,
             @Value("${auth.jwt.expiration-ms:3600000}") long expirationMs) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes()); // legalább 32+ byte!
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.expirationMs = expirationMs;
     }
 
@@ -26,16 +26,14 @@ public class JwtService {
                 .setSubject(subject)
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + expirationMs))
-                .signWith(key) // HS256 by default ezzel a kulccsal
+                .signWith(key)
                 .compact();
     }
 
-    /** Visszaadja a token subject-jét (nálunk: felhasználónév) */
     public String extractUsername(String token) {
         return parse(token).getBody().getSubject();
     }
 
-    /** Gyors érvényesség-ellenőrzés (szignó + lejárat) */
     public boolean isValid(String token) {
         try {
             parse(token); // ha nem dob kivételt, oké
@@ -45,7 +43,6 @@ public class JwtService {
         }
     }
 
-    /** Közös parser (aláírás- és lejárat-ellenőrzéssel) */
     private Jws<Claims> parse(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
